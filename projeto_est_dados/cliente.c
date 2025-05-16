@@ -3,6 +3,11 @@
 #include "cliente.h"
 #include "fila.h"
 
+
+//IMPLEMENTAR ALTERAÇÃO DE DATA DE MARCAR ATENDIMENTO!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
 cliente listaclientes[MAX_CLIENTES];
 int totalclientes = 0;
 static int ultimoid = 0;
@@ -53,6 +58,10 @@ void consultarcliente() {
     if (pos >= 0) {
         cliente c = listaclientes[pos];
         printf("ID: %d\nNome: %s\nTelefone: %s\nPlaca: %s\n", c.id, c.nome, c.telefone, c.placa);
+        if (strlen(c.data) > 0)
+            printf("Data marcada para: %s\n", c.data);
+        else
+            printf("Data de atendimento não definida.\n");
     } else {
         printf("Cliente nao encontrado.\n");
     }
@@ -95,7 +104,29 @@ void excluircliente() {
         }
         totalclientes--;
         removerdafila(id);
-        printf("Cliente removido com sucesso.\n");
+        printf("Cliente removido com sucesso\n");
+    } else {
+        printf("Cliente nao encontrado.\n");
+    }}
+
+void marcaratendimento() {
+    printf("\n--- Marcar Atendimento ---\n");
+    printf("Informe o ID do cliente: ");
+    int id;
+    if (scanf("%d%*c", &id) != 1) {
+        printf("Entrada invalida.\n");
+        return;
+    }
+
+    int pos = buscarclienteporid(id);
+    if (pos >= 0) {
+        cliente* c = &listaclientes[pos];
+
+        lerstring("Informe a data do atendimento (dd/mm): ", c->data, sizeof(c->data));
+
+        adicionarnafila(c->id);
+        printf("Atendimento marcado para o cliente %s na data %s.\n",
+               c->nome, c->data);
     } else {
         printf("Cliente nao encontrado.\n");
     }

@@ -8,6 +8,7 @@ typedef struct {
     char nome[50];
     char telefone[20];
     char placa[10];
+    char data[4];
 } cliente;
 
 extern cliente listaclientes[MAX_CLIENTES];
@@ -18,5 +19,6 @@ void inserircliente();
 void consultarcliente();
 void alterarcliente();
 void excluircliente();
+void marcaratendimento();
 
 #endif

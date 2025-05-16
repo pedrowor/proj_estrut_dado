@@ -16,8 +16,9 @@ void menu() {
         printf("2 - Consultar cliente\n");
         printf("3 - Alterar cliente\n");
         printf("4 - Excluir cliente\n");
-        printf("5 - Atender proximo cliente\n");
-        printf("6 - Ver historico de atendimentos\n");
+        printf("5 - Marcar atendimento (data)\n");
+        printf("6 - Atender proximo cliente\n");
+        printf("7 - Ver historico de atendimentos\n");
         printf("0 - Sair\n");
         printf(": ");
 
@@ -33,7 +34,8 @@ void menu() {
             case 2: consultarcliente(); break;
             case 3: alterarcliente(); break;
             case 4: excluircliente(); break;
-            case 5: {
+            case 5:marcaratendimento();break;
+            case 6: {
                 int id = atendercliente();
                 if (id != -1) {
                     int pos = buscarclienteporid(id);
@@ -46,7 +48,7 @@ void menu() {
                 }
                 break;
             }
-            case 6: mostrarhistorico(); break;
+            case 7: mostrarhistorico(); break;
             case 0: printf("Saindo\n"); break;
             default: printf("Opcao invalida\n");
         }
